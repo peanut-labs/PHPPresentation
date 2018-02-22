@@ -1240,6 +1240,11 @@ class PptCharts extends AbstractDecoratorWriter
             $this->writeSingleValueOrReference($objWriter, $includeSheet, $series->getTitle(), $coords);
             $objWriter->endElement();
 
+            // c:explosion
+            $objWriter->startElement('c:explosion');
+            $objWriter->writeAttribute('val', $subject->getExplosion());
+            $objWriter->endElement();
+
             // Fills for points?
             $dataPointFills = $series->getDataPointFills();
             foreach ($dataPointFills as $key => $value) {
