@@ -109,6 +109,8 @@ class Axis implements ComparableInterface
 
     protected $axisCrosses = self::CROSSES_AUTO;
 
+    protected $axisFont;
+
     /**
      * Create a new \PhpOffice\PhpPresentation\Shape\Chart\Axis instance
      *
@@ -119,6 +121,7 @@ class Axis implements ComparableInterface
         $this->title = $title;
         $this->outline = new Outline();
         $this->font  = new Font();
+        $this->axisFont = new Font();
     }
 
     /**
@@ -416,5 +419,16 @@ class Axis implements ComparableInterface
     public function getAxisCrosses()
     {
         return $this->axisCrosses;
+    }
+
+    public function setAxisFont(Font $pFont = null)
+    {
+        $this->axisFont = $pFont;
+        return $this;
+    }
+
+    public function getAxisFont()
+    {
+        return $this->axisFont;
     }
 }

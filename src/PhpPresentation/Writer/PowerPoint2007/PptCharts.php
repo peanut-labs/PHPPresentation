@@ -2066,6 +2066,53 @@ class PptCharts extends AbstractDecoratorWriter
         // ##c:spPr
         $objWriter->endElement();
 
+        // c:txPr
+        $objWriter->startElement('c:txPr');
+
+        // a:bodyPr
+        $objWriter->writeElement('a:bodyPr', null);
+
+        // a:lstStyle
+        $objWriter->writeElement('a:lstStyle', null);
+
+        // a:p
+        $objWriter->startElement('a:p');
+
+        // a:pPr
+        $objWriter->startElement('a:pPr');
+
+        // a:defRPr
+        $objWriter->startElement('a:defRPr');
+
+        $objWriter->writeAttribute('b', ($oAxis->getAxisFont()->isBold() ? 'true' : 'false'));
+        $objWriter->writeAttribute('i', ($oAxis->getAxisFont()->isItalic() ? 'true' : 'false'));
+        $objWriter->writeAttribute('strike', ($oAxis->getAxisFont()->isStrikethrough() ? 'sngStrike' : 'noStrike'));
+        $objWriter->writeAttribute('sz', ($oAxis->getAxisFont()->getSize() * 100));
+        $objWriter->writeAttribute('u', $oAxis->getAxisFont()->getUnderline());
+        $objWriter->writeAttributeIf($oAxis->getAxisFont()->isSuperScript(), 'baseline', '30000');
+        $objWriter->writeAttributeIf($oAxis->getAxisFont()->isSubScript(), 'baseline', '-25000');
+
+        // Font - a:solidFill
+        $objWriter->startElement('a:solidFill');
+        $this->writeColor($objWriter, $oAxis->getAxisFont()->getColor());
+        $objWriter->endElement();
+
+        // Font - a:latin
+        $objWriter->startElement('a:latin');
+        $objWriter->writeAttribute('typeface', $oAxis->getAxisFont()->getName());
+        $objWriter->endElement();
+
+        $objWriter->endElement();
+
+        $objWriter->endElement();
+
+        $objWriter->endElement();
+
+        $objWriter->endElement();
+        //
+
+
+
         if ($oAxis->getTitle() != '') {
             // c:title
             $objWriter->startElement('c:title');
