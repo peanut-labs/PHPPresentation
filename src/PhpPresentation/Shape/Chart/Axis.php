@@ -34,6 +34,11 @@ class Axis implements ComparableInterface
     const TICK_MARK_INSIDE = 'in';
     const TICK_MARK_OUTSIDE = 'out';
 
+    const ORIENTATION_NORMAL = 'minMax';
+    const ORIENTATION_REVERSED = 'maxMin';
+
+    const CROSSES_MAX = 'max';
+    const CROSSES_AUTO = 'autoZero';
     /**
      * Title
      *
@@ -99,6 +104,10 @@ class Axis implements ComparableInterface
      * @var Outline
      */
     protected $outline;
+
+    protected $orientation = self::ORIENTATION_NORMAL;
+
+    protected $axisCrosses = self::CROSSES_AUTO;
 
     /**
      * Create a new \PhpOffice\PhpPresentation\Shape\Chart\Axis instance
@@ -385,5 +394,27 @@ class Axis implements ComparableInterface
     {
         $this->hashIndex = $value;
         return $this;
+    }
+
+    public function setOrientation($value = self::ORIENTATION_NORMAL)
+    {
+        $this->orientation = $value;
+        return $this;
+    }
+
+    public function getOrientation()
+    {
+        return $this->orientation;
+    }
+
+    public function setAxisCrosses($value = self::CROSSES_AUTO)
+    {
+        $this->axisCrosses = $value;
+        return $this;
+    }
+
+    public function getAxisCrosses()
+    {
+        return $this->axisCrosses;
     }
 }

@@ -1997,7 +1997,7 @@ class PptCharts extends AbstractDecoratorWriter
 
         // $mainElement > c:scaling > c:orientation
         $objWriter->startElement('c:orientation');
-        $objWriter->writeAttribute('val', 'minMax');
+        $objWriter->writeAttribute('val', $oAxis->getOrientation());
         $objWriter->endElement();
 
         if ($oAxis->getMaxBounds() != null) {
@@ -2155,7 +2155,7 @@ class PptCharts extends AbstractDecoratorWriter
 
         // c:crosses
         $objWriter->startElement('c:crosses');
-        $objWriter->writeAttribute('val', 'autoZero');
+        $objWriter->writeAttribute('val', $oAxis->getAxisCrosses());
         $objWriter->endElement();
 
         if ($typeAxis == Chart\Axis::AXIS_X) {
